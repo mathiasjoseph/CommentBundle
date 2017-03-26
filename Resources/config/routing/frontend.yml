@@ -1,0 +1,11 @@
+adevis_app_comment_user_list:
+    path:      /user/list
+    defaults:  { _controller: MikyCommentBundle:Frontend/UserComment:list}
+
+adevis_app_comment_user_remove:
+    path:      /{comment}/remove
+    defaults:  { _controller: MikyCommentBundle:Frontend/UserComment:remove}
+
+adevis_app_comment_ad_create:
+    path:      /{ad}/create
+    defaults:  { _controller: MikyCommentBundle:Frontend/UserComment:create}

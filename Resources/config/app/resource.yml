@@ -1,0 +1,36 @@
+adevis_resource:
+    resources:
+        adevis.comment:
+            classes:
+                model: %comment.entity.class%
+            contexts:
+                admin: ~
+
+adevis_grid:
+    grids:
+        adevis_comment_admin:
+            driver:
+                options:
+                    class: %comment.entity.class%
+            sorting:
+                createdAt:
+                    path: createdAt
+                    direction: desc
+            fields:
+                id:
+                    type: string
+                    label: adevis.ui.id
+                body:
+                    type: string
+                    label: adevis.ui.content
+            filters:
+                body:
+                    type: string
+                    label: adevis.ui.content
+
+            actions:
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

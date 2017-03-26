@@ -1,0 +1,328 @@
+{% extends "@MikyApp/profile_layout.html.twig" %}
+
+{% form_theme form 'MikyAppBundle:Form:theme.html.twig' %}
+{% set setting_ad = adevis_settings('ad') %}
+
+
+ {% block main_bar %}
+     {{ form_start(form, {'attr': {'novalidate': 'true', 'data-toggle': "validator"}}) }}
+
+     {{ form_widget(form._token) }}
+     <div class="panel panel-default">
+         <div class="panel-heading"><b>CATEGORIE</b></div>
+         {{ form_errors(form.category) }}
+         <div class="panel-body">
+             {{ form_widget(form.category, {'attr': {'class': 'selectpicker', 'data-live-search': 'true'}}) }}
+
+         </div>
+     </div>
+
+     <div class="panel panel-default">
+         <div class="panel-heading"><b>INFORMATION</b></div>
+         <div class="panel-body">
+             <div class="form-group">
+                 <label>TITRE:</label>
+                 {{ form_errors(form.title) }}
+                 {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+
+             </div>
+             <div class="form-group">
+                 <label>DESCRIPTION:</label>
+                 {{ form_errors(form.description) }}
+                 {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': "8"}}) }}
+             </div>
+         </div>
+     </div>
+
+     <div class="panel panel-default">
+         <div class="panel-heading"><b>TAGS</b></div>
+         <div class="panel-body">
+             <div class="form-group">
+                 {{ form_widget(form.tags, {'attr': {'class': 'form-control taginput', 'onsubmit': "return false", 'data-role': "tagsinput", "placeholder": "Please add post tags with comma like: keyword,keyword2,keyword3"}}) }}
+             </div>
+         </div>
+     </div>
+
+     <div class="panel panel-default">
+         <div class="panel-heading"><b>Images</b></div>
+         <div class="panel-body">
+             <div style="padding-bottom: 5px" class="btn-group" data-toggle="buttons">
+                 <button type="button" style="
+    background: #286090;
+" class="btn btn-primary black" id="add-another-image"><i class="fa fa-plus"></i> Ajouter une image
+                 </button>
+                 <button type="button" style="
+    background: #b50810;
+" class="btn btn-primary hidden" id="remove-another-image"><i class="fa fa-minus"></i> Enlever une image
+                 </button>
+             </div>
+             <div id="image-fields-list"
+                  data-prototype="{{ form_widget(form.images.vars.prototype)|e }}">
+                 {% for image in form.images %}
+                     <div class="col-md-4">
+                         {{ form_errors(image) }}
+                         {{ form_widget(image) }}
+                     </div>
+                 {% endfor %}
+             </div>
+
+         </div>
+         {% include "@MikyAd/Frontend/AdConfirmation/option_images_choices.html.twig" with {'form': form, 'options': optionsImage} %}
+     </div>
+
+     <div class="panel panel-default">
+         <div class="panel-heading"><b>ADRESSE</b></div>
+         <div class="panel-body">
+             <div class="form-group">
+                 <label>ADRESSE:</label>
+
+                 {{ form_widget(form.location.formattedAddress, {'id': 'user_input_autocomplete_address', 'attr': {'class': 'form-control disabled', 'placeholder': 'adevis.location.please_type_address'|trans}}) }}
+             </div>
+             <div id="map" style="width: 100%; height: 300px; position: relative; overflow: hidden;">
+
+             </div>
+             {{ form_widget(form.location.streetNumber, {'id': 'street_number'}) }}
+             {{ form_widget(form.location.street, {'id': 'route'}) }}
+             {{ form_widget(form.location.postalCode, {'id': 'postal_code'}) }}
+             {{ form_widget(form.location.city, {'id': 'locality'}) }}
+             {{ form_widget(form.location.country, {'id': 'country'}) }}
+             {{ form_widget(form.location.countryShortName, {'id': 'country_short'}) }}
+             {{ form_widget(form.location.administrativeAreaLevel2, {'id': 'administrative_area_level_2'}) }}
+             {{ form_widget(form.location.administrativeAreaLevel1, {'id': 'administrative_area_level_1'}) }}
+             {{ form_widget(form.location.latitude, {'id': 'lat'}) }}
+             {{ form_widget(form.location.longitude, {'id': 'lng'}) }}
+
+         </div>
+     </div>
+     <div class="panel panel-default">
+         <div class="panel-heading"><b style="text-transform: uppercase">{{ "adevis.ui.price"|trans }}</b></div>
+         <div class="panel-body">
+             <div class="form-group col-md-5">
+                 <label style="text-transform: uppercase">{{ form.price.vars.label|trans }}:</label>
+                 {{ form_errors(form.price) }}
+                 {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
+
+             </div>
+             <div class="form-group col-md-5">
+                 <label style="text-transform: uppercase">{{ form.quantity.vars.label|trans }}:</label>
+                 {{ form_errors(form.quantity) }}
+                 {{ form_widget(form.quantity, {'attr': {'class': 'form-control'}}) }}
+             </div>
+             <div class="form-group col-md-5">
+                 <label style="text-transform: uppercase">{{ form.measurementUnit.vars.label|trans }}</label>
+                 {{ form_errors(form.measurementUnit) }}
+                 {{ form_widget(form.measurementUnit, {'attr': {'class': 'form-control'}}) }}
+             </div>
+             <div class="form-group col-md-5">
+                 <label style="text-transform: uppercase">{{ form.currency.vars.label|trans }}</label>
+
+                 {{ form_errors(form.currency) }}
+                 {{ form_widget(form.currency, {'attr': {'class': 'form-control'}}) }}
+             </div>
+         </div>
+     </div>
+     <div id="accordion" role="tablist" aria-multiselectable="true">
+         {% include "@MikyAd/Frontend/AdConfirmation/package_choices.html.twig" with {'form': form, 'packages': packages} %}
+
+         {% include "@MikyAd/Frontend/AdConfirmation/option_top_list_choices.html.twig" with {'form': form, 'options': optionsTopList} %}
+         {% include "@MikyAd/Frontend/AdConfirmation/option_featured_choices.html.twig" with {'form': form, 'options': optionsFeatured} %}
+     </div>
+     <b>
+
+         <div id="payment" class="panel panel-default">
+             <div class="panel-heading"><b>{{ "adevis.ui.payment"|trans }}</b></div>
+             <div class="panel-body">
+                 <div class="panel panel-default">
+                     <div class="panel-heading"><b>Details</b></div>
+                     <div class="panel-body" style="font-weight: normal;">
+                         {{ "adevis.ui.packages"|trans }}
+                         <span class="pull-right">€</span><span id="package-price" class="pull-right">0</span>
+                         <hr>
+                         {{ "adevis.ui.go_up_in_top_list_catches"|trans }}
+                         <span class="pull-right">€</span><span id="top-list-price" class="pull-right">0</span>
+                         <hr>
+                         {{ "adevis.ui.additional_pictures_catches"|trans }}
+                         <span class="pull-right">€</span><span id="images-price" class="pull-right">0</span>
+                         <hr>
+                         {{ "adevis.ui.option_featureds_title_catches"|trans }}
+                         <span class="pull-right">€</span><span id="featureds-price" class="pull-right">0</span>
+                         <hr>
+                         Total :
+                         <span class="pull-right">€</span><span id="total-price" class="pull-right">0</span>
+                     </div>
+                 </div>
+                 <div class="panel panel-default">
+                     <div class="panel-heading"><b>Options de paiement</b></div>
+                     <div class="panel-body" style="font-weight: normal;">
+                         <input type="radio" name="payment_method" value="paypal" checked style="margin-right: 10px">
+                         <label>Paypal</label>
+                         <br>
+                         Payer via PayPal
+                         <hr>
+
+                         <input type="radio" name="payment_method" value="stripe" style="margin-right: 10px">
+                         <label>Carte de crédit (Stripe)</label>
+                         <br>
+                         Payer par carte de crédit
+                     </div>
+                 </div>
+             </div>
+         </div>
+
+
+     </b>
+
+     {{ form_widget(form.accept_rule) }} J'accepte les <a href="{{ path('adevis_app_page_protection_charter') }}">conditions
+     d'utilisation </a>
+     <hr>
+     <button class="btn btn-default" type="submit">CONFIRMER L'ENVOIE DE L'ANNONCE</button>
+
+     </b></form>
+ {% endblock %}
+{% block javascripts_level_page %}
+
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyC4qRdwcWnBSD-9E9X4mO92QxzWG5MvWwk&language={{ app.request.locale }}">
+    </script>
+    <script src="{{ asset('bundles/adevisapp/js/google/autocomplete.js') }}"></script>
+    <script>
+        function removeAnotherImage(number) {
+            $("#image-fields-list .col-md-4").get(number).remove();
+            if ($("#image-fields-list .col-md-4").length == 0) {
+                jQuery('#remove-another-image').addClass("hide");
+            }
+            if ($("#image-fields-list .col-md-4").length < maxImages) {
+                jQuery('#add-another-image').removeClass("disabled");
+            }
+        }
+        function changeMaxImage(number) {
+            maxImages = number;
+            if ($("#image-fields-list .col-md-4").length > number){
+                removeAnotherImage($("#image-fields-list .col-md-4").length - 1);
+                changeMaxImage(number);
+            }
+            if ($("#image-fields-list .col-md-4").length < number){
+                jQuery('#add-another-image').removeClass("disabled");
+            }
+        }
+        function initOptions() {
+            if (isOptionsEmpty()) {
+                $("#payment").hide();
+            } else {
+                $("#payment").show();
+            }
+            if ($("#{{ form.optionImage.children.template.vars.id }}").find("option:selected").data("image") != null) {
+
+                changeMaxImage($("#{{ form.optionImage.children.template.vars.id }}").find("option:selected").data("image"));
+            }else {
+                changeMaxImage({{ setting_ad.max_image_number }})
+            }
+            setTotal();
+        }
+
+        function setTotal() {
+            var total = 0;
+            if ($("#{{ form.optionTopList.children.template.vars.id }}").find("option:selected").data("price") != null) {
+                total += $("#{{ form.optionTopList.children.template.vars.id }}").find("option:selected").data("price");
+            }
+            if ($("#{{ form.optionImage.children.template.vars.id }}").find("option:selected").data("price") != null) {
+                total += $("#{{ form.optionImage.children.template.vars.id }}").find("option:selected").data("price");
+            }
+            if ($("#{{ form.optionFeatured.children.template.vars.id }}").find("option:selected").data("price") != null) {
+                total += $("#{{ form.optionFeatured.children.template.vars.id }}").find("option:selected").data("price");
+            }
+            if ($("#{{ form.package.children.template.vars.id }}").find("option:selected").data("price") != null) {
+                total += $("#{{ form.package.children.template.vars.id }}").find("option:selected").data("price");
+            }
+
+            $("#total-price").text(total);
+
+        }
+        function isOptionsEmpty() {
+            if ($("#{{ form.optionTopList.children.template.vars.id }}").val().length < 1 || $("#{{ form.optionTopList.children.template.vars.id }}") == null) {
+                if ($("#{{ form.optionImage.children.template.vars.id }}").val().length < 1 || $("#{{ form.optionImage.children.template.vars.id }}") == null) {
+                    if ($("#{{ form.optionFeatured.children.template.vars.id }}").val().length < 1 || $("#{{ form.optionFeatured.children.template.vars.id }}") == null) {
+                        if ($("#{{ form.package.children.template.vars.id }}").val().length < 1 || $("#{{ form.package.children.template.vars.id }}") == null) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        $("#{{ form.optionTopList.children.template.vars.id }}").change(function () {
+            if ($(this).find("option:selected").data("price") == null) {
+                $("#top-list-price").text(0);
+            } else {
+                $("#top-list-price").text($(this).find("option:selected").data("price"));
+            }
+            initOptions();
+        });
+        $("#{{ form.optionImage.children.template.vars.id }}").change(function () {
+            if ($(this).find("option:selected").data("price") == null) {
+                $("#images-price").text(0);
+            } else {
+                $("#images-price").text($(this).find("option:selected").data("price"));
+            }
+            initOptions();
+        });
+        $("#{{ form.optionFeatured.children.template.vars.id }}").change(function () {
+            if ($(this).find("option:selected").data("price") == null) {
+                $("#featureds-price").text(0);
+            } else {
+                $("#featureds-price").text($(this).find("option:selected").data("price"));
+            }
+            initOptions();
+        });
+        $("#{{ form.package.children.template.vars.id }}").change(function () {
+            if ($(this).find("option:selected").data("price") == null) {
+                $("#package-price").text(0);
+            } else {
+                $("#package-price").text($(this).find("option:selected").data("price"));
+            }
+            initOptions();
+        });
+    </script>
+    <script type="text/javascript">
+        $('input.taginput').tagsinput({
+            confirmKeys: [13, 32, 44]
+        });
+                 var maxImages = {{ setting_ad.max_image_number }};
+            jQuery('#add-another-image').click(function (e) {
+                if ($("#image-fields-list .col-md-4").length >= maxImages) {
+                    return;
+                }
+                e.preventDefault();
+
+                var imageList = jQuery('#image-fields-list');
+
+                // grab the prototype template
+                var newWidget = imageList.attr('data-prototype');
+                // replace the "__name__" used in the id and name of the prototype
+                // with a number that's unique to your emails
+                // end name attribute looks like name="contact[emails][2]"
+                newWidget = newWidget.replace(/__name__/g, $("#image-fields-list .col-md-4").length);
+
+
+                // create a new list element and add it to the list
+                var newLi = jQuery(' <div class="col-md-4"></div>').html(newWidget);
+                newLi.appendTo(imageList);
+                jQuery('#remove-another-image').removeClass("hidden");
+                if ($("#image-fields-list .col-md-4").length >= maxImages) {
+                    jQuery('#add-another-image').addClass("disabled");
+                }
+                setImageInput($(".image-file-input"));
+
+            });
+            jQuery('#remove-another-image').click(function (e) {
+                e.preventDefault();
+                removeAnotherImage($("#image-fields-list .col-md-4").length - 1);
+            });
+            initOptions();
+
+
+    </script>
+
+
+{% endblock %}

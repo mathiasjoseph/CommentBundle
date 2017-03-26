@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="Miky\Bundle\CommentBundle\Repository\CommentRepository" name="Miky\Bundle\CommentBundle\Entity\Comment" table="comment">
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="authorName" type="string" nullable="true"/>
+    <field name="body" type="text"/>
+    <field name="website" type="text" nullable="true"/>
+    <field name="email" type="string" nullable="true"/>
+    <many-to-one field="author" target-entity="Miky\Bundle\UserBundle\Entity\Customer">
+      <join-column name="author_id" referenced-column-name="id" on-delete="CASCADE"/>
+    </many-to-one>
+    <many-to-one target-entity="Miky\Bundle\AdBundle\Entity\Ad" field="ad">
+      <join-column name="ad_id" referenced-column-name="id" on-delete="CASCADE"/>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
