@@ -1,14 +1,14 @@
-adevis_resource:
+miky_resource:
     resources:
-        adevis.comment:
+        miky.comment:
             classes:
                 model: %comment.entity.class%
             contexts:
                 admin: ~
 
-adevis_grid:
+miky_grid:
     grids:
-        adevis_comment_admin:
+        miky_comment_admin:
             driver:
                 options:
                     class: %comment.entity.class%
@@ -19,14 +19,14 @@ adevis_grid:
             fields:
                 id:
                     type: string
-                    label: adevis.ui.id
+                    label: miky.ui.id
                 body:
                     type: string
-                    label: adevis.ui.content
+                    label: miky.ui.content
             filters:
                 body:
                     type: string
-                    label: adevis.ui.content
+                    label: miky.ui.content
 
             actions:
                 item:

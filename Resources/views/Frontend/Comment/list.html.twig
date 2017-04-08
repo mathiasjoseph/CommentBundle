@@ -71,11 +71,11 @@
                     <td style="width: 15%"><a href="#"><b>{{ ad.category.name }}</b></a></td>
                     <td style="width: 15%">{{  ad.validatedAt|localizeddate('medium', 'none', app.request.locale)  }}</td>
                     <td style="width: 30%">
-                        <a href="{{ path('adevis_app_ad_remove', {'ad': ad.id}) }}" class="btn btn-danger"><i
+                        <a href="{{ path('miky_app_ad_remove', {'ad': ad.id}) }}" class="btn btn-danger"><i
                                     class="fa fa-trash"></i></a>
-                        <a href="{{ path('adevis_app_ad_show', {'ad': ad.id}) }}" class="btn btn-primary"><i
+                        <a href="{{ path('miky_app_ad_show', {'ad': ad.id}) }}" class="btn btn-primary"><i
                                     class="fa fa-eye"></i></a>
-                        <a href="{{ path('adevis_app_ad_edit', {'ad': ad.id}) }}" class="btn btn-default"><i
+                        <a href="{{ path('miky_app_ad_edit', {'ad': ad.id}) }}" class="btn btn-default"><i
                                     class="fa fa-pencil"></i></a>
                     </td>
                 </tr>

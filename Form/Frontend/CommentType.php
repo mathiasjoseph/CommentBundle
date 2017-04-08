@@ -27,6 +27,6 @@ class CommentType extends AbstractType
 
     public function getName()
     {
-        return 'adevis_comment_frontend';
+        return 'miky_comment_frontend';
     }
 }

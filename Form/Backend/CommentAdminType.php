@@ -19,19 +19,19 @@ class CommentAdminType extends AbstractType
             ->add("ad", EntityType::class,array(
                 "class" => Ad::class,
                 "attr" => array("disabled" => true),
-                'label'=> 'adevis.ui.ad',
+                'label'=> 'miky.ui.ad',
                 'choice_label' => 'title'
             ))
             ->add("author", EntityType::class,array(
                 "class" => Customer::class,
                 "attr" => array("disabled" => true),
-                'label'=> 'adevis.ui.author',
+                'label'=> 'miky.ui.author',
                 'choice_label' => 'username'
             ))
             ->add('body', TextareaType::class, array(
                 "required" => true,
                 'attr' => array('rows' => '7'),
-              'label'=> 'adevis.ui.content'
+              'label'=> 'miky.ui.content'
 
             ));
     }
@@ -45,6 +45,6 @@ class CommentAdminType extends AbstractType
 
     public function getName()
     {
-        return 'adevis_comment_admin';
+        return 'miky_comment_admin';
     }
 }

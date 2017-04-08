@@ -23,7 +23,7 @@ class UserCommentController extends Controller
     {
         $customer = $this->getUser();
         if (!is_object($customer) || !$customer instanceof Customer) {
-            return $this->redirectToRoute("adevis_app_customer_security_login");
+            return $this->redirectToRoute("miky_app_customer_security_login");
         }
         $comment = new Comment();
         $comment->setAuthor($customer);
@@ -37,11 +37,11 @@ class UserCommentController extends Controller
             $em = $this->get("doctrine.orm.entity_manager");
             $em->persist($comment);
             $em->flush();
-            $this->addFlash('success', 'adevis.ui.comment_sent');
-            return $this->redirectToRoute('adevis_app_ad_show', array("ad" => $ad->getId()));
+            $this->addFlash('success', 'miky.ui.comment_sent');
+            return $this->redirectToRoute('miky_app_ad_show', array("ad" => $ad->getId()));
         }
 
-        return $this->redirectToRoute('adevis_app_ad_show', array("ad" => $ad->getId()));
+        return $this->redirectToRoute('miky_app_ad_show', array("ad" => $ad->getId()));
     }
 
     /**
@@ -85,7 +85,7 @@ class UserCommentController extends Controller
                 $em->flush();
             }
         }
-        return $this->redirectToRoute("adevis_app_ad_show", array("ad" => $comment->getAd()->getId()));
+        return $this->redirectToRoute("miky_app_ad_show", array("ad" => $comment->getAd()->getId()));
     }
 
 

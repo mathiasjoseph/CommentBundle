@@ -1,18 +1,18 @@
-adevis_admin_comment:
+miky_admin_comment:
     resource: |
-        alias: adevis.comment
+        alias: miky.comment
         section: admin
         context: admin
         templates: MikyAdminBundle:Crud
         redirect: update
-        form: adevis_comment_admin
-        grid: adevis_comment_admin
+        form: miky_comment_admin
+        grid: miky_comment_admin
         permission: true
         vars:
             all:
-                subheader: adevis.ui.manage_comments
+                subheader: miky.ui.manage_comments
             index:
                 icon: bookmark-o
-    type: adevis.resource
+    type: miky.resource
 
 

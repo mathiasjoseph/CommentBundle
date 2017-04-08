@@ -118,7 +118,7 @@
 
 
             {% if ad.certified == true %}
-                <img src="{{ asset('bundles/adevisapp/imgs/certified-label.png') }}" class="img-responsive certified pull-right">
+                <img src="{{ asset('bundles/mikyapp/imgs/certified-label.png') }}" class="img-responsive certified pull-right">
             {% endif %}
 
 
@@ -128,7 +128,7 @@
             <p>
                 {{ ad.description }}
             </p>
-            <img src="{{ asset("bundles/adevisapp/imgs/google.png") }}" class="img-responsive google">
+            <img src="{{ asset("bundles/mikyapp/imgs/google.png") }}" class="img-responsive google">
             <div class="pull-left">
                 <h3>{{ ad.price }} {% if ad.currency is not null %}{{ ad.currency.shortName }}{% endif %} / {% if ad.quantity is not null %}{{ ad.quantity }}{% endif %} {% if ad.measurementUnit is not null %}{{ ad.measurementUnit.name }}{% endif %}</h3>
             </div>
@@ -173,10 +173,10 @@
                 {% elseif ad.postedBy is not null and app.user.id != ad.postedBy.id  %}
 
                 <ul class="social-contact">
-                    <li><a href="#"><img src="{{ asset("bundles/adevisapp/imgs/fb.png") }}" class="img-responsive"></a></li>
-                    <li><a href="#"><img src="{{ asset("bundles/adevisapp/imgs/twitter.png") }}" class="img-responsive"></a></li>
-                    <li><a href="#"><img src="{{ asset("bundles/adevisapp/imgs/g+.png") }}" class="img-responsive"></a></li>
-                    <li><a href="#"><img src="{{ asset("bundles/adevisapp/imgs/linkedin.png") }}" class="img-responsive"></a></li>
+                    <li><a href="#"><img src="{{ asset("bundles/mikyapp/imgs/fb.png") }}" class="img-responsive"></a></li>
+                    <li><a href="#"><img src="{{ asset("bundles/mikyapp/imgs/twitter.png") }}" class="img-responsive"></a></li>
+                    <li><a href="#"><img src="{{ asset("bundles/mikyapp/imgs/g+.png") }}" class="img-responsive"></a></li>
+                    <li><a href="#"><img src="{{ asset("bundles/mikyapp/imgs/linkedin.png") }}" class="img-responsive"></a></li>
                     <div class="clearfix"></div>
                 </ul>
                 <textarea class="form-control" rows="3">Formulaire de contact</textarea>
@@ -258,7 +258,7 @@
 
     </div>
     <div class="col-md-3 sidebar">
-        <img src="{{ asset("bundles/adevisapp/imgs/recsell.png")}}" class="img-responsive">
+        <img src="{{ asset("bundles/mikyapp/imgs/recsell.png")}}" class="img-responsive">
     </div>
 
 {% endblock %}

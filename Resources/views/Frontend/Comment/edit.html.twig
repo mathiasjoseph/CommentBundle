@@ -1,7 +1,7 @@
 {% extends "@MikyApp/profile_layout.html.twig" %}
 
 {% form_theme form 'MikyAppBundle:Form:theme.html.twig' %}
-{% set setting_ad = adevis_settings('ad') %}
+{% set setting_ad = miky_settings('ad') %}
 
 
  {% block main_bar %}
@@ -73,7 +73,7 @@
              <div class="form-group">
                  <label>ADRESSE:</label>
 
-                 {{ form_widget(form.location.formattedAddress, {'id': 'user_input_autocomplete_address', 'attr': {'class': 'form-control disabled', 'placeholder': 'adevis.location.please_type_address'|trans}}) }}
+                 {{ form_widget(form.location.formattedAddress, {'id': 'user_input_autocomplete_address', 'attr': {'class': 'form-control disabled', 'placeholder': 'miky.location.please_type_address'|trans}}) }}
              </div>
              <div id="map" style="width: 100%; height: 300px; position: relative; overflow: hidden;">
 
@@ -92,7 +92,7 @@
          </div>
      </div>
      <div class="panel panel-default">
-         <div class="panel-heading"><b style="text-transform: uppercase">{{ "adevis.ui.price"|trans }}</b></div>
+         <div class="panel-heading"><b style="text-transform: uppercase">{{ "miky.ui.price"|trans }}</b></div>
          <div class="panel-body">
              <div class="form-group col-md-5">
                  <label style="text-transform: uppercase">{{ form.price.vars.label|trans }}:</label>
@@ -127,7 +127,7 @@
     <script type="text/javascript"
             src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyC4qRdwcWnBSD-9E9X4mO92QxzWG5MvWwk&language={{ app.request.locale }}">
     </script>
-    <script src="{{ asset('bundles/adevisapp/js/google/autocomplete.js') }}"></script>
+    <script src="{{ asset('bundles/mikyapp/js/google/autocomplete.js') }}"></script>
     <script type="text/javascript">
         // keep track of how many email fields have been rendered
 
