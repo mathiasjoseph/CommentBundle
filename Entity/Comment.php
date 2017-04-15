@@ -4,17 +4,17 @@ namespace Miky\Bundle\CommentBundle\Entity;
 use Miky\Bundle\AdBundle\Entity\Ad;
 use Miky\Bundle\CommentBundle\Model\CommentInterface;
 use Miky\Bundle\CommentBundle\Model\ThreadInterface;
-use Miky\Bundle\CoreBundle\Entity\Traits\MikyCommonInterface;
-use Miky\Bundle\CoreBundle\Entity\Traits\MikyCommonTrait;
 use Miky\Bundle\UserBundle\Entity\Customer;
+use Miky\Component\Core\Model\CommonModelInterface;
+use Miky\Component\Core\Model\CommonModelTrait;
 use Miky\Component\Resource\Model\ResourceInterface;
 
 /**
  * Comment
  */
-class Comment implements MikyCommonInterface, CommentInterface, ResourceInterface
+class Comment implements CommonModelInterface, CommentInterface, ResourceInterface
 {
-    Use MikyCommonTrait;
+    Use CommonModelTrait;
 
     /**
      * @var int

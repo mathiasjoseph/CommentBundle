@@ -1,7 +1,8 @@
-miky_app_comment:
-    resource: "@MikyCommentBundle/Resources/config/routing/frontend.yml"
-    prefix : /comment
-
-miky_admin_comment:
-    resource: "@MikyCommentBundle/Resources/config/routing/backend.yml"
-    prefix : /%admin_prefix_path%
+#miky_app_comment:
+#    resource: "@MikyCommentBundle/Resources/config/routing/frontend.yml"
+#    prefix : /comment
+#
+#miky_admin_comment:
+#    resource: "@MikyCommentBundle/Resources/config/routing/backend.yml"
+#    prefix : /%admin_prefix_path%
+#
