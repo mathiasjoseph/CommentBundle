@@ -4,5 +4,5 @@
 #
 #miky_admin_comment:
 #    resource: "@MikyCommentBundle/Resources/config/routing/backend.yml"
-#    prefix : /%admin_prefix_path%
+#    prefix : /%miky_admin.admin_key_path%
 #
