@@ -1,8 +1,0 @@
-miky:
-    comment:
-        edit: Editer le commentaire
-    ui:
-        comments: Commentaires
-        comments_list: Liste des commentaires
-        manage_comments: Gérer les commentaires
-        comment_sent: Commentaire envoyé
